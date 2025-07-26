@@ -13,10 +13,12 @@ RUN adduser --gecos "" --disabled-password -s /sbin/nologin --home /tmp --uid 10
 
 COPY pyproject.toml uv.lock /app/
 WORKDIR /app
-RUN uv sync --locked
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked --compile
 
 COPY src /app/src
 
 EXPOSE 7373
 USER potareporter
+ENV PYTHONOPTIMIZE=1
 CMD ["python", "src/potareporter.py"]

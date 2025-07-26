@@ -22,7 +22,7 @@ CMD ["ash"]
 FROM base AS prod
 RUN --mount=type=cache,target=/root/.cache/uv \
     apk add --no-cache uv && \
-    uv sync --locked --compile && \
+    uv sync --locked --compile --extra uvloop && \
     apk del uv
 
 USER potareporter

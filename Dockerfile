@@ -9,19 +9,21 @@ ENV UV_PROJECT_ENVIRONMENT="/usr/local/"
 EXPOSE 7373
 
 RUN adduser --gecos "" --disabled-password -s /sbin/nologin --home /tmp --uid 1000 potareporter && \
-    apk add --no-cache uv && \
     mkdir -p /app
 COPY pyproject.toml uv.lock /app/
 WORKDIR /app
 COPY src /app/src
 
 FROM base AS dev
-RUN uv sync --group dev --group test
+RUN apk add --no-cache uv && \
+    uv sync --group dev --group test
 CMD ["ash"]
 
 FROM base AS prod
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --locked --compile
+    apk add --no-cache uv && \
+    uv sync --locked --compile && \
+    apk del uv
 
 USER potareporter
 ENV PYTHONOPTIMIZE=1

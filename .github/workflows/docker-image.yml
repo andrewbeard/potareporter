@@ -2,10 +2,14 @@ name: Docker Image CI
 
 on:
   push:
+    branches:
+      - main
 
 jobs:
   docker:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       -
         name: Login to Docker Hub

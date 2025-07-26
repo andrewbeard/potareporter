@@ -19,4 +19,4 @@ COPY src /app/src
 
 EXPOSE 7373
 USER potareporter
-CMD ["uv", "run", "python", "src/potareporter.py"]
+CMD ["python", "src/potareporter.py"]

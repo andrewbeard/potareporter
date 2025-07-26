@@ -8,7 +8,9 @@ from ServerComponent import ServerComponent
 
 
 def main():
-    logging.basicConfig(format="%(asctime)s %(levelname)s:%(message)s", level=logging.INFO)
+    logging.basicConfig(
+        format="%(asctime)s %(levelname)s:%(message)s", level=logging.INFO
+    )
     # Start both components using ContainerComponent with proper configuration
     run_application(
         ContainerComponent(

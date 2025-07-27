@@ -44,13 +44,14 @@ class ScraperComponent(Component):
         return added
 
     async def scraper_task(self) -> None:
-        new_spot_event_source = current_context().get_resource(
+        logging.info("Starting scraper task")
+        new_spot_event_source = await current_context().request_resource(
             NewSpotEventSource, "new_spot_event_source"
         )
         assert new_spot_event_source is not None
-        spots = current_context().get_resource(dict[str, Spot], "spots")
+        spots = await current_context().request_resource(dict[str, Spot], "spots")
         assert spots is not None
-        new_spots = current_context().get_resource(list[Spot], "new_spots")
+        new_spots = await current_context().request_resource(list[Spot], "new_spots")
         assert new_spots is not None
 
         while self.running:

@@ -10,12 +10,12 @@ from Spot import Spot
 
 async def handle_client(stream: SocketStream) -> None:
     await stream.send("Welcome to POTA Reporter\n".encode())
-    spots = current_context().get_resource(dict[str, Spot], "spots")
+    spots = await current_context().request_resource(dict[str, Spot], "spots")
     assert spots is not None
-    new_spots = current_context().get_resource(list[Spot], "new_spots")
+    new_spots = await current_context().request_resource(list[Spot], "new_spots")
     assert new_spots is not None
 
-    event_source = current_context().get_resource(
+    event_source = await current_context().request_resource(
         NewSpotEventSource, "new_spot_event_source"
     )
     assert event_source is not None

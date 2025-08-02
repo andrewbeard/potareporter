@@ -18,8 +18,8 @@ class ScraperComponent(Component):
 
     async def start(self, ctx) -> None:
         ctx.add_resource(NewSpotEventSource(), name="new_spot_event_source")
-        ctx.add_resource(dict(), name="spots", types=dict[str, Spot])
-        ctx.add_resource(list(), name="new_spots", types=list[Spot])
+        ctx.add_resource({}, name="spots", types=dict[str, Spot])
+        ctx.add_resource([], name="new_spots", types=list[Spot])
 
         self.task_group = anyio.create_task_group()
         await self.task_group.__aenter__()

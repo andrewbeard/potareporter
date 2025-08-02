@@ -21,12 +21,12 @@ async def handle_client(stream: SocketStream) -> None:
     assert event_source is not None
 
     for spot in spots.values():
-        await stream.send(f"{str(spot)}\n".encode())
+        await stream.send(f"{spot}\n".encode())
 
     while True:
         await event_source.signal.wait_event()
         for spot in new_spots:
-            await stream.send(f"{str(spot)}\n".encode())
+            await stream.send(f"{spot}\n".encode())
 
 
 async def serve_requests() -> None:
@@ -38,9 +38,6 @@ async def serve_requests() -> None:
 
 
 class ServerComponent(Component):
-    def __init__(self):
-        self.task_group = None
-
     async def start(self, ctx) -> None:
         self.task_group = anyio.create_task_group()
         await self.task_group.__aenter__()

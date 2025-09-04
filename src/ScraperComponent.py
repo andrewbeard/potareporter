@@ -17,9 +17,8 @@ class ScraperComponent(Component):
         self.running = False
 
     async def start(self, ctx) -> None:
-        ctx.add_resource(NewSpotEventSource(), name="new_spot_event_source")
+        ctx.add_resource(NewSpotEventSource())
         ctx.add_resource({}, name="spots", types=dict[str, Spot])
-        ctx.add_resource([], name="new_spots", types=list[Spot])
 
         self.task_group = anyio.create_task_group()
         await self.task_group.__aenter__()
@@ -46,13 +45,11 @@ class ScraperComponent(Component):
     async def scraper_task(self) -> None:
         logging.info("Starting scraper task")
         new_spot_event_source = await current_context().request_resource(
-            NewSpotEventSource, "new_spot_event_source"
+            NewSpotEventSource
         )
         assert new_spot_event_source is not None
         spots = await current_context().request_resource(dict[str, Spot], "spots")
         assert spots is not None
-        new_spots = await current_context().request_resource(list[Spot], "new_spots")
-        assert new_spots is not None
 
         while self.running:
             try:
@@ -61,16 +58,12 @@ class ScraperComponent(Component):
                 added = self.get_new_spots(spots, scrape)
                 logging.info(f"Retrieved {len(scrape)} spot reports, {len(added)} new")
 
-                if added:
-                    new_spots.clear()
-                    new_spots.extend(added)
-                    spots.clear()
-                    for spot in scrape:
-                        spots[spot.id] = spot
-                    new_spot_event_source.signal.dispatch()
+                for spot in added:
+                    spots[spot.id] = spot
+                    new_spot_event_source.signal.dispatch(spot)
 
-            except Exception as e:
-                logging.error(f"Error fetching spot reports: {e}")
+            except Exception:
+                logging.exception(f"Error fetching spot reports:")
             finally:
                 await anyio.sleep(self.FETCH_PERIOD)
 

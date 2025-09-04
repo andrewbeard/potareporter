@@ -12,21 +12,19 @@ async def handle_client(stream: SocketStream) -> None:
     await stream.send("Welcome to POTA Reporter\n".encode())
     spots = await current_context().request_resource(dict[str, Spot], "spots")
     assert spots is not None
-    new_spots = await current_context().request_resource(list[Spot], "new_spots")
-    assert new_spots is not None
+    logging.debug("Got spots resource")
 
-    event_source = await current_context().request_resource(
-        NewSpotEventSource, "new_spot_event_source"
-    )
+    event_source = await current_context().request_resource(NewSpotEventSource)
     assert event_source is not None
+    logging.debug("Got event source resource")
 
+    await stream.send("Spots:\n".encode())
     for spot in spots.values():
         await stream.send(f"{spot}\n".encode())
 
-    while True:
-        await event_source.signal.wait_event()
-        for spot in new_spots:
-            await stream.send(f"{spot}\n".encode())
+    logging.debug("Streaming events")
+    async for event in event_source.signal.stream_events():
+        await stream.send(f"{event.spot}\n".encode())
 
 
 async def serve_requests() -> None:

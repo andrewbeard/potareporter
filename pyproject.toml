@@ -1,7 +1,7 @@
 [project]
 name = "potareporter"
 version = "0.1.2"
-description = ""
+description = "Faux DX cluster that scrapes POTA spot reports"
 authors = [{ name = "Andrew Beard", email = "bearda@gmail.com" }]
 requires-python = ">=3.13"
 readme = "README.md"

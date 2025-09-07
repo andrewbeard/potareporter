@@ -21,12 +21,12 @@ async def handle_client(stream: SocketStream) -> None:
     assert event_source is not None
 
     for spot in spots.values():
-        await stream.send(f"{spot}\n".encode())
+        await stream.send(f"{spot.dxspider_output}\n".encode())
 
     while True:
         await event_source.signal.wait_event()
         for spot in new_spots:
-            await stream.send(f"{spot}\n".encode())
+            await stream.send(f"{spot.dxspider_output}\n".encode())
 
 
 async def serve_requests() -> None:

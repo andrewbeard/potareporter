@@ -309,14 +309,14 @@ wheels = [
 
 [[package]]
 name = "refurb"
-version = "2.1.0"
+version = "2.2.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "mypy" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/1d/fe/34715ea7799daedfd8ef20fd8fbba23aa2aaa2039a94b41e63ee203e202d/refurb-2.1.0.tar.gz", hash = "sha256:4fb41a3a6523a035c2379792776d4c28ddb291c7fcb8348725cc01749a98e32c", size = 89109, upload-time = "2025-05-15T00:18:57.69Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/02/53/c90648f39d7b5d61122b7c6978cdfa29e8bdfd758711306d770c1a339b00/refurb-2.2.0.tar.gz", hash = "sha256:645472793b3af40cca121e37df45dd9b20b525c4df99429d9fd9f6b5c238b9ea", size = 89129, upload-time = "2025-09-17T16:31:10.404Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/db/b6/10f6facceae292a47bf3f78fc2edf67127e417e5ffa80376c18b65e103eb/refurb-2.1.0-py3-none-any.whl", hash = "sha256:a5e6386614ad92f9351df34475b9518c52e82601990d121a4b7a3a0a85b777c2", size = 140160, upload-time = "2025-05-15T00:18:56.174Z" },
+    { url = "https://files.pythonhosted.org/packages/7b/44/608465b7217bf5b9eb7484d428e6bb8f21bc19bf8a8ffc992b7f313e1ece/refurb-2.2.0-py3-none-any.whl", hash = "sha256:2d41f728f166b3315fb9e4618881589385666bcdf1f6d9f879981d6d86091b34", size = 140226, upload-time = "2025-09-17T16:31:09.098Z" },
 ]
 
 [[package]]

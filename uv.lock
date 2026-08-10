@@ -285,7 +285,7 @@ provides-extras = ["uvloop"]
 dev = [
     { name = "black", specifier = ">=26.5.1" },
     { name = "isort", specifier = ">=8.0.1" },
-    { name = "refurb", specifier = ">=2.1.0" },
+    { name = "refurb", specifier = ">=2.3.1" },
 ]
 test = [{ name = "pytest", specifier = ">=9.1.1" }]
 
@@ -340,14 +340,14 @@ wheels = [
 
 [[package]]
 name = "refurb"
-version = "2.2.0"
+version = "2.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "mypy" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/02/53/c90648f39d7b5d61122b7c6978cdfa29e8bdfd758711306d770c1a339b00/refurb-2.2.0.tar.gz", hash = "sha256:645472793b3af40cca121e37df45dd9b20b525c4df99429d9fd9f6b5c238b9ea", size = 89129, upload-time = "2025-09-17T16:31:10.404Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/48/90/572837d7ec45cb9385b85b751bd5f317294a938e1600b2b7190618a2929b/refurb-2.3.1.tar.gz", hash = "sha256:8605ef2cf40804403340396b9cf51b13bd5d0f5f6a84f8b4447484b7ba94bc79", size = 90117, upload-time = "2026-04-03T21:43:51.158Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7b/44/608465b7217bf5b9eb7484d428e6bb8f21bc19bf8a8ffc992b7f313e1ece/refurb-2.2.0-py3-none-any.whl", hash = "sha256:2d41f728f166b3315fb9e4618881589385666bcdf1f6d9f879981d6d86091b34", size = 140226, upload-time = "2025-09-17T16:31:09.098Z" },
+    { url = "https://files.pythonhosted.org/packages/17/62/e675136b4b04d2e2910c78763ff264339bd968162d9a7d8dfb9771af3051/refurb-2.3.1-py3-none-any.whl", hash = "sha256:c18f0abdeb478ab86df5bfc352b635fa3543b403950f610814884055115e9a82", size = 141403, upload-time = "2026-04-03T21:43:52.595Z" },
 ]
 
 [[package]]
